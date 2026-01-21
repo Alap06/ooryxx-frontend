@@ -1,0 +1,117 @@
+  // Charger les produits
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        setIsLoading(true);
+
+        // Construire les paramètres de requête
+        const apiFilters = {};
+        
+        if (filters.category) {
+          apiFilters.category = filters.category;
+        }
+        
+        if (filters.searchQuery) {
+          apiFilters.search = filters.searchQuery;
+        }
+        
+        if (filters.minPrice) {
+          apiFilters.minPrice = parseFloat(filters.minPrice);
+        }
+        
+        if (filters.maxPrice) {
+          apiFilters.maxPrice = parseFloat(filters.maxPrice);
+        }
+        
+        if (filters.rating) {
+          apiFilters.rating = parseFloat(filters.rating);
+        }
+        
+        if (filters.brand) {
+          apiFilters.brand = filters.brand;
+        }
+
+        // Mapping du tri
+        let sortParam = '-createdAt';
+        switch (sortBy) {
+          case 'price_asc':
+            sortParam = 'finalPrice';
+            break;
+          case 'price_desc':
+            sortParam = '-finalPrice';
+            break;
+          case 'rating':
+            sortParam = '-rating';
+            break;
+          case 'newest':
+            sortParam = '-createdAt';
+            break;
+          case 'name':
+            sortParam = 'title';
+            break;
+          case 'popularity':
+            sortParam = '-reviewCount';
+            break;
+          default:
+            sortParam = '-reviewCount';
+        }
+
+        // Appel API
+        const response = await productService.getProducts(
+          { ...apiFilters, sort: sortParam },
+          currentPage,
+          12
+        );
+
+        if (response.success) {
+          const products = response.data || [];
+          
+          // Filtrer les produits VIP si nécessaire
+          let filteredData = products;
+          if (!isVIPCustomer) {
+            filteredData = products.filter(p => !p.isVipExclusive);
+          }
+
+          setProducts(products);
+          setFilteredProducts(filteredData);
+          setTotalProducts(response.pagination?.total || filteredData.length);
+          setTotalPages(response.pagination?.totalPages ||  1);
+        } else {
+          // Fallback vers sampleProducts si l'API échoue
+          console.warn('API call failed, using sample products');
+          let filteredData = [...sampleProducts];
+
+          // Appliquer les filtres localement
+          if (filters.category) {
+            filteredData = filteredData.filter(p => p.category === filters.category);
+          }
+
+          if (filters.searchQuery) {
+            const query = filters.searchQuery.toLowerCase();
+            filteredData = filteredData.filter(p =>
+              p.name.toLowerCase().includes(query) ||
+              (p.brand && p.brand.toLowerCase().includes(query))
+            );
+          }
+
+          setProducts(sampleProducts);
+          setFilteredProducts(filteredData);
+          setTotalProducts(filteredData.length);
+          setTotalPages(Math.ceil(filteredData.length / 12));
+        }
+
+      } catch (error) {
+        console.error('Erreur lors du chargement des produits:', error);
+        // Fallback vers sampleProducts en cas d'erreur
+        setProducts(sampleProducts);
+        setFilteredProducts(sampleProducts);
+        setTotalProducts(sampleProducts.length);
+        setTotalPages(Math.ceil(sampleProducts.length / 12));
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, sortBy, isVIPCustomer, currentPage]);
