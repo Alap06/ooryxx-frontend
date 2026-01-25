@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import adminService from '../../services/adminService';
-import { XMarkIcon } from '@heroicons/react/24/outline'; // Assurez-vous d'avoir @heroicons/react installé
 
 const OrderDetailsModal = ({ order, onClose }) => {
     if (!order) return null;

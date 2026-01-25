@@ -12,7 +12,6 @@ import {
     TagIcon,
     ArrowPathIcon,
     CheckCircleIcon,
-    XCircleIcon,
     ExclamationTriangleIcon,
     ListBulletIcon,
     Squares2X2Icon

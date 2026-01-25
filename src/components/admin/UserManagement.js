@@ -13,20 +13,15 @@ import {
     ChevronRightIcon,
     XMarkIcon,
     CheckIcon,
-    ShoppingBagIcon,
-    MapPinIcon,
-    KeyIcon,
-    CakeIcon,
-    ClockIcon,
-    IdentificationIcon,
     GlobeAltIcon,
-    CheckCircleIcon,
-    XCircleIcon,
     PlusIcon,
     PencilSquareIcon,
     TrashIcon,
     EyeIcon,
-    EyeSlashIcon
+    EyeSlashIcon,
+    KeyIcon,
+    ClockIcon,
+    IdentificationIcon
 } from '@heroicons/react/24/outline';
 import adminService from '../../services/adminService';
 

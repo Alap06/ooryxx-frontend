@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     MagnifyingGlassIcon,
     FunnelIcon,
@@ -72,9 +72,9 @@ const ReclamationManagement = () => {
 
     useEffect(() => {
         fetchReclamations();
-    }, [currentPage, filterStatus, filterType, filterPriority, searchQuery]);
+    }, [fetchReclamations]);
 
-    const fetchReclamations = async () => {
+    const fetchReclamations = useCallback(async () => {
         setLoading(true);
         try {
             const params = {
@@ -112,7 +112,7 @@ const ReclamationManagement = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [currentPage, itemsPerPage, filterStatus, filterType, filterPriority, searchQuery]);
 
     const handleStatusUpdate = async (newStatus) => {
         if (!selectedReclamation) return;

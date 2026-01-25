@@ -30,7 +30,7 @@ const ProductFilters = ({
     features: false,
     brand: false
   });
-  
+
   const [brandSearch, setBrandSearch] = useState('');
   const [priceInputs, setPriceInputs] = useState({
     min: filters.minPrice || '',
@@ -61,7 +61,7 @@ const ProductFilters = ({
 
   const filteredBrands = useMemo(() => {
     if (!brandSearch.trim()) return brands;
-    return brands.filter(brand => 
+    return brands.filter(brand =>
       brand.toLowerCase().includes(brandSearch.toLowerCase())
     );
   }, [brands, brandSearch]);
@@ -82,9 +82,8 @@ const ProductFilters = ({
   }).length;
 
   const FilterSection = ({ title, section, icon, badge, children }) => (
-    <div className={`border-b border-neutral-100 last:border-b-0 transition-all duration-300 ${
-      expandedSections[section] ? 'pb-4 mb-4' : 'pb-3 mb-3'
-    }`}>
+    <div className={`border-b border-neutral-100 last:border-b-0 transition-all duration-300 ${expandedSections[section] ? 'pb-4 mb-4' : 'pb-3 mb-3'
+      }`}>
       <button
         onClick={() => toggleSection(section)}
         className="flex items-center justify-between w-full text-left group py-2 hover:bg-neutral-50 rounded-lg px-2 -mx-2 transition-colors"
@@ -101,14 +100,12 @@ const ProductFilters = ({
           )}
         </div>
         <ChevronDownIcon
-          className={`w-5 h-5 text-neutral-400 group-hover:text-primary-500 transition-all duration-300 ${
-            expandedSections[section] ? 'rotate-180' : ''
-          }`}
+          className={`w-5 h-5 text-neutral-400 group-hover:text-primary-500 transition-all duration-300 ${expandedSections[section] ? 'rotate-180' : ''
+            }`}
         />
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ${
-        expandedSections[section] ? 'max-h-[500px] opacity-100 mt-3' : 'max-h-0 opacity-0'
-      }`}>
+      <div className={`overflow-hidden transition-all duration-300 ${expandedSections[section] ? 'max-h-[500px] opacity-100 mt-3' : 'max-h-0 opacity-0'
+        }`}>
         {children}
       </div>
     </div>
@@ -130,11 +127,10 @@ const ProductFilters = ({
   };
 
   const RadioOption = ({ name, value, checked, onChange, children, className = '' }) => (
-    <label className={`flex items-center cursor-pointer group p-2.5 rounded-xl transition-all duration-200 ${
-      checked 
-        ? 'bg-primary-100/60 backdrop-blur-sm border-2 border-primary-300/50 shadow-lg shadow-primary-100/30' 
+    <label className={`flex items-center cursor-pointer group p-2.5 rounded-xl transition-all duration-200 ${checked
+        ? 'bg-primary-100/60 backdrop-blur-sm border-2 border-primary-300/50 shadow-lg shadow-primary-100/30'
         : 'hover:bg-white/60 hover:backdrop-blur-sm border-2 border-transparent hover:border-neutral-200/50 hover:shadow-md'
-    } ${className}`}>
+      } ${className}`}>
       <input
         type="radio"
         name={name}
@@ -143,11 +139,10 @@ const ProductFilters = ({
         onChange={onChange}
         className="sr-only"
       />
-      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
-        checked 
-          ? 'border-primary-500 bg-primary-500' 
+      <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${checked
+          ? 'border-primary-500 bg-primary-500'
           : 'border-neutral-300 group-hover:border-primary-400'
-      }`}>
+        }`}>
         {checked && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
       </div>
       <div className="ml-3 flex-1">{children}</div>
@@ -161,7 +156,7 @@ const ProductFilters = ({
       warning: checked ? 'bg-warning-100/60 backdrop-blur-sm border-warning-300/50 shadow-lg shadow-warning-100/30' : 'hover:bg-white/60 hover:backdrop-blur-sm border-transparent hover:border-neutral-200/50',
       accent: checked ? 'bg-accent-100/60 backdrop-blur-sm border-accent-300/50 shadow-lg shadow-accent-100/30' : 'hover:bg-white/60 hover:backdrop-blur-sm border-transparent hover:border-neutral-200/50',
     };
-    
+
     const checkVariants = {
       default: checked ? 'bg-primary-500 border-primary-500' : 'border-neutral-300',
       success: checked ? 'bg-success-500 border-success-500' : 'border-neutral-300',
@@ -197,9 +192,8 @@ const ProductFilters = ({
   };
 
   return (
-    <div className={`bg-white/70 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden ${
-      mobile ? 'max-h-[80vh] overflow-y-auto' : ''
-    }`}>
+    <div className={`bg-white/70 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 overflow-hidden ${mobile ? 'max-h-[80vh] overflow-y-auto' : ''
+      }`}>
       {/* En-tête avec gradient et glass */}
       <div className="bg-gradient-to-r from-primary-500/90 to-secondary-500/90 backdrop-blur-md p-4 sm:p-5 border-b border-white/10">
         <div className="flex items-center justify-between">
@@ -252,9 +246,9 @@ const ProductFilters = ({
         )}
 
         {/* Catégories */}
-        <FilterSection 
-          title="Catégories" 
-          section="category" 
+        <FilterSection
+          title="Catégories"
+          section="category"
           icon="📁"
           badge={categories.length > 0 ? categories.length : null}
         >
@@ -269,7 +263,7 @@ const ProductFilters = ({
                 <span className="text-sm font-medium text-neutral-700">Toutes les catégories</span>
               </div>
             </RadioOption>
-            
+
             {categories.length > 0 ? (
               categories.map(category => (
                 <RadioOption
@@ -281,11 +275,10 @@ const ProductFilters = ({
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-neutral-700">{category.name}</span>
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                      (category.count || 0) > 0 
-                        ? 'text-primary-700 bg-primary-100' 
+                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${(category.count || 0) > 0
+                        ? 'text-primary-700 bg-primary-100'
                         : 'text-neutral-400 bg-neutral-100'
-                    }`}>
+                      }`}>
                       {category.count || 0}
                     </span>
                   </div>
@@ -311,7 +304,7 @@ const ProductFilters = ({
             >
               <span className="text-sm font-medium text-neutral-700">Tous les prix</span>
             </RadioOption>
-            
+
             {priceRanges.map((range, index) => (
               <RadioOption
                 key={index}
@@ -380,7 +373,7 @@ const ProductFilters = ({
             >
               <span className="text-sm font-medium text-neutral-700">Toutes les notes</span>
             </RadioOption>
-            
+
             {[4, 3, 2, 1].map(rating => (
               <RadioOption
                 key={rating}
@@ -407,9 +400,9 @@ const ProductFilters = ({
 
         {/* Marques */}
         {brands.length > 0 && (
-          <FilterSection 
-            title="Marques" 
-            section="brand" 
+          <FilterSection
+            title="Marques"
+            section="brand"
             icon="🏷️"
             badge={brands.length}
           >
@@ -425,7 +418,7 @@ const ProductFilters = ({
                 />
               </div>
             )}
-            
+
             <div className="space-y-1 max-h-48 overflow-y-auto scrollbar-hide">
               <RadioOption
                 name="brand"
@@ -435,7 +428,7 @@ const ProductFilters = ({
               >
                 <span className="text-sm font-medium text-neutral-700">Toutes les marques</span>
               </RadioOption>
-              
+
               {filteredBrands.map(brand => (
                 <RadioOption
                   key={brand}
@@ -447,7 +440,7 @@ const ProductFilters = ({
                   <span className="text-sm text-neutral-700">{brand}</span>
                 </RadioOption>
               ))}
-              
+
               {filteredBrands.length === 0 && brandSearch && (
                 <p className="text-sm text-neutral-500 italic p-2 text-center">
                   Aucune marque trouvée

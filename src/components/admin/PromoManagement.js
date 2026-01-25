@@ -13,12 +13,8 @@ import {
     XCircleIcon,
     ClockIcon,
     ArrowPathIcon,
-    ChevronDownIcon,
-    CalendarIcon,
-    PercentBadgeIcon,
-    CurrencyDollarIcon,
-    TagIcon,
-    PaperAirplaneIcon
+    PaperAirplaneIcon,
+    TagIcon
 } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
 import adminService from '../../services/adminService';

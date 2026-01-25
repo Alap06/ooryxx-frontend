@@ -10,11 +10,10 @@ import {
 } from '@heroicons/react/24/outline';
 
 const Navbar = () => {
-  const [, setActiveDropdown] = useState(null);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const isHomePage = location.pathname === '/';
+
   const dropdownRef = useRef(null);
 
   // Catégories principales avec sous-catégories
@@ -155,7 +154,6 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setActiveDropdown(null);
         setIsMegaMenuOpen(false);
       }
     };

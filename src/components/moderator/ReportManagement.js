@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import {
-    FlagIcon,
-    ExclamationTriangleIcon,
     CheckCircleIcon,
     XCircleIcon,
     EyeIcon,

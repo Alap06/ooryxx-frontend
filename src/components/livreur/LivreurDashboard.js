@@ -7,7 +7,7 @@ import {
     XCircleIcon,
     MapPinIcon,
     PhoneIcon,
-    CurrencyDollarIcon,
+
     ChevronRightIcon,
     ArrowPathIcon,
     MagnifyingGlassIcon,
@@ -160,8 +160,8 @@ const LivreurDashboard = () => {
                     <button
                         onClick={handleAvailabilityToggle}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${isAvailable
-                                ? 'bg-green-500 hover:bg-green-600'
-                                : 'bg-red-500 hover:bg-red-600'
+                            ? 'bg-green-500 hover:bg-green-600'
+                            : 'bg-red-500 hover:bg-red-600'
                             }`}
                     >
                         {isAvailable ? '✓ Disponible' : '✗ Indisponible'}
@@ -197,7 +197,7 @@ const LivreurDashboard = () => {
                     <QrCodeIcon className="w-6 h-6" />
                     Scanner un QR Code
                 </button>
-                
+
                 <button
                     onClick={() => setShowManualInput(!showManualInput)}
                     className="w-full bg-white border-2 border-indigo-200 text-indigo-600 py-3 rounded-xl flex items-center justify-center gap-3 font-semibold hover:bg-indigo-50 transition-colors"

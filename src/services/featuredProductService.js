@@ -23,7 +23,7 @@ export const getFeaturedProducts = async () => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la récupération des produits en vedette');
     }
@@ -45,7 +45,7 @@ export const getAllFeaturedProducts = async (params = {}) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la récupération des produits');
     }
@@ -66,7 +66,7 @@ export const getFeaturedProductById = async (id) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Produit non trouvé');
     }
@@ -88,7 +88,7 @@ export const createFeaturedProduct = async (productData) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la création du produit');
     }
@@ -110,7 +110,7 @@ export const updateFeaturedProduct = async (id, productData) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la mise à jour du produit');
     }
@@ -131,7 +131,7 @@ export const deleteFeaturedProduct = async (id) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la suppression du produit');
     }
@@ -152,7 +152,7 @@ export const toggleFeaturedProduct = async (id) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors du changement de statut');
     }
@@ -174,7 +174,7 @@ export const reorderFeaturedProducts = async (products) => {
     });
 
     const data = await response.json();
-    
+
     if (!response.ok) {
       throw new Error(data.message || 'Erreur lors de la réorganisation');
     }
@@ -186,7 +186,7 @@ export const reorderFeaturedProducts = async (products) => {
   }
 };
 
-export default {
+const featuredProductService = {
   getFeaturedProducts,
   getAllFeaturedProducts,
   getFeaturedProductById,
@@ -196,3 +196,5 @@ export default {
   toggleFeaturedProduct,
   reorderFeaturedProducts
 };
+
+export default featuredProductService;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { XMarkIcon, CameraIcon, VideoCameraSlashIcon } from '@heroicons/react/24/outline';
+import { XMarkIcon, VideoCameraSlashIcon } from '@heroicons/react/24/outline';
 import { Html5Qrcode } from 'html5-qrcode';
 
 const QRScanner = ({ onScan, onClose }) => {

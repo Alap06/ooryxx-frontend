@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     MagnifyingGlassIcon,
-    FunnelIcon,
     BuildingStorefrontIcon,
     CheckCircleIcon,
     XCircleIcon,
     ClockIcon,
     StarIcon,
-    CurrencyDollarIcon,
     CubeIcon,
     ShoppingBagIcon,
     ChevronRightIcon,
@@ -28,9 +26,9 @@ const VendorManagement = () => {
 
     useEffect(() => {
         fetchVendors();
-    }, []);
+    }, [fetchVendors]);
 
-    const fetchVendors = async () => {
+    const fetchVendors = useCallback(async () => {
         setLoading(true);
         try {
             const response = await apiService.get('/admin/vendors');
@@ -64,7 +62,8 @@ const VendorManagement = () => {
         } finally {
             setLoading(false);
         }
-    };
+
+    }, []);
 
     const getStatusBadge = (status) => {
         const styles = {

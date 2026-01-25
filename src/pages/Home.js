@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRightIcon, StarIcon, FireIcon, TagIcon, TruckIcon, ShieldCheckIcon, HeartIcon, SparklesIcon } from '@heroicons/react/24/outline';
 import ProductCard from '../components/products/ProductCard';
-// eslint-disable-next-line no-unused-vars
 import Logo from '../data/images/Logo.png';
 import HeroPremium from '../components/home/HeroPremium';
 
@@ -34,32 +33,32 @@ const Home = () => {
         // Charger les produits depuis l'API directement
         const response = await fetch('http://localhost:5000/api/products?limit=20&sort=-rating');
         const data = await response.json();
-        
+
         console.log('Home Products API Response:', data); // Debug
-        
+
         let products = [];
         if (data.success && data.data?.products?.length > 0) {
           products = data.data.products;
         } else if (data.products?.length > 0) {
           products = data.products;
         }
-        
+
         if (products.length > 0) {
           setFeaturedProducts(products);
           // Filtrer les produits en promo
           const saleItems = products.filter(p => p.discount?.percentage > 0);
           setSaleProducts(saleItems.length > 0 ? saleItems.slice(0, 6) : products.slice(0, 6));
-          
+
           // Calculer le pourcentage maximum de réduction
           if (saleItems.length > 0) {
             const maxDiscountValue = Math.max(...saleItems.map(p => p.discount?.percentage || 0));
             setMaxDiscount(maxDiscountValue > 0 ? maxDiscountValue : 70);
-            
+
             // Calculer la date moyenne de fin des promotions
             const datesWithPromo = saleItems
               .filter(p => p.discount?.endDate)
               .map(p => new Date(p.discount.endDate).getTime());
-            
+
             if (datesWithPromo.length > 0) {
               const avgDate = new Date(datesWithPromo.reduce((a, b) => a + b) / datesWithPromo.length);
               setSaleEndDate(avgDate);
@@ -69,15 +68,15 @@ const Home = () => {
             }
           }
         }
-        
+
         // Charger les catégories depuis l'API
         const catResponse = await fetch('http://localhost:5000/api/categories');
         const catData = await catResponse.json();
-        
+
         if (catData.success && catData.data?.length > 0) {
           // Stocker toutes les catégories
           setAllCategories(catData.data);
-          
+
           // Catégories principales pour la grille
           const mainCategories = catData.data
             .filter(cat => !cat.parentId)
@@ -90,7 +89,7 @@ const Home = () => {
               subcategories: catData.data.filter(sub => sub.parentId === cat._id)
             }));
           setCategories(mainCategories);
-          
+
           console.log('Categories chargées:', mainCategories.length, 'catégories principales');
         }
       } catch (error) {
@@ -222,10 +221,10 @@ const Home = () => {
                 <div className="relative bg-white/15 backdrop-blur-2xl border-2 border-white/30 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 shadow-2xl">
                   {/* Animation de pulse sur le fond - dégradé blanc */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-white/10 to-transparent rounded-2xl sm:rounded-3xl animate-pulse"></div>
-                  
+
                   {/* Effet de lueur externe animée */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-white/20 via-white/30 to-white/20 rounded-2xl sm:rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  
+
                   {/* Logo avec effet hover */}
                   <img
                     src={Logo}
@@ -341,7 +340,7 @@ const Home = () => {
                       <p className="text-[10px] sm:text-xs text-neutral-500 group-hover:text-white/80 transition-colors">
                         {category.count}
                       </p>
-                      
+
                       {/* Nombre de sous-catégories */}
                       {category.subcategories && category.subcategories.length > 0 && (
                         <p className="text-[9px] sm:text-[10px] text-primary-600 group-hover:text-white/90 mt-1 font-medium">
@@ -358,7 +357,7 @@ const Home = () => {
                 ))}
               </div>
             </div>
-            
+
             {/* Indicateur de scroll */}
             {categories.length > 6 && (
               <div className="text-center mt-4 text-sm text-neutral-500">

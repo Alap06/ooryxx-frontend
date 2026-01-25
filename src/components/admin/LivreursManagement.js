@@ -7,8 +7,6 @@ import {
     MagnifyingGlassIcon,
     MapPinIcon,
     StarIcon,
-    ClockIcon,
-    ChevronDownIcon,
     PlusIcon,
     DocumentTextIcon,
     BuildingOfficeIcon,
@@ -633,7 +631,7 @@ const LivreurDetailsModal = ({ livreur, onClose }) => {
                         <div className="flex items-center gap-4">
                             <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md border-2 border-white/30">
                                 {details.livreur.userId.profileImage ? (
-                                    <img src={details.livreur.userId.profileImage} className="w-full h-full rounded-full object-cover" />
+                                    <img src={details.livreur.userId.profileImage} alt="Profile" className="w-full h-full rounded-full object-cover" />
                                 ) : (
                                     <span className="text-2xl font-bold">{details.livreur.userId.firstName?.charAt(0)}</span>
                                 )}

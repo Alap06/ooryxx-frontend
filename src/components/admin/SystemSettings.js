@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     CogIcon,
     CurrencyDollarIcon,
@@ -7,11 +7,9 @@ import {
     BellIcon,
     CheckIcon,
     ExclamationTriangleIcon,
-    PhotoIcon,
     MagnifyingGlassIcon,
     XMarkIcon,
     StarIcon,
-    TagIcon,
     CreditCardIcon
 } from '@heroicons/react/24/outline';
 import adminService from '../../services/adminService';
@@ -38,7 +36,7 @@ const SystemSettings = () => {
     });
 
     const [saved, setSaved] = useState(false);
-    const [loading, setLoading] = useState(false);
+
 
     // Featured Products state
     const [allProducts, setAllProducts] = useState([]);

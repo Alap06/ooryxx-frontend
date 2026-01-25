@@ -7,7 +7,6 @@ import {
     CheckCircleIcon,
     XMarkIcon,
     ClockIcon,
-    ExclamationCircleIcon,
     MegaphoneIcon
 } from '@heroicons/react/24/outline';
 import { toast } from 'react-toastify';
@@ -251,8 +250,8 @@ const AdminMessageForm = ({ onClose, onSuccess }) => {
                                         type="button"
                                         onClick={() => setFormData({ ...formData, targetType: 'role', targetRole: role.value })}
                                         className={`flex items-center gap-2 p-3 rounded-xl border text-sm font-medium transition-all ${formData.targetType === 'role' && formData.targetRole === role.value
-                                                ? 'bg-indigo-50 border-indigo-300 text-indigo-700'
-                                                : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:bg-neutral-100'
+                                            ? 'bg-indigo-50 border-indigo-300 text-indigo-700'
+                                            : 'bg-neutral-50 border-neutral-200 text-neutral-600 hover:bg-neutral-100'
                                             }`}
                                     >
                                         <role.icon className="w-4 h-4" />
@@ -273,8 +272,8 @@ const AdminMessageForm = ({ onClose, onSuccess }) => {
                                     type="button"
                                     onClick={() => setFormData({ ...formData, type: mt.value })}
                                     className={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all ${formData.type === mt.value
-                                            ? `bg-${mt.color}-100 text-${mt.color}-700 border-2 border-${mt.color}-300`
-                                            : 'bg-neutral-50 text-neutral-600 border border-neutral-200 hover:bg-neutral-100'
+                                        ? `bg-${mt.color}-100 text-${mt.color}-700 border-2 border-${mt.color}-300`
+                                        : 'bg-neutral-50 text-neutral-600 border border-neutral-200 hover:bg-neutral-100'
                                         }`}
                                 >
                                     <span>{mt.icon}</span>

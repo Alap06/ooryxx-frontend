@@ -6,7 +6,6 @@ import {
     TruckIcon,
     CheckIcon,
     ArrowUturnLeftIcon,
-    CameraIcon,
     ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
 
