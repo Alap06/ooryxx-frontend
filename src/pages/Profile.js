@@ -100,7 +100,7 @@ const Profile = () => {
         userService.getWishlist(),
         userService.getUserStats(),
         // Fetch user's reclamations with improved error handling
-        fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/reclamations/my`, {
+        fetch(`${process.env.REACT_APP_API_URL}/reclamations/my`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json'

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { 
-  LockClosedIcon, 
-  EyeIcon, 
+import {
+  LockClosedIcon,
+  EyeIcon,
   EyeSlashIcon,
   KeyIcon,
   CheckCircleIcon
@@ -21,7 +21,7 @@ const ResetPassword = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
-  
+
   const navigate = useNavigate();
 
   // Vérifier la force du mot de passe
@@ -64,9 +64,6 @@ const ResetPassword = () => {
       toast.error('Code de vérification invalide');
       return;
     }
-
-    setIsLoading(true);
-
     try {
       const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
       const response = await fetch(`${apiUrl}/auth/reset-password`, {
@@ -208,7 +205,7 @@ const ResetPassword = () => {
                   )}
                 </button>
               </div>
-              
+
               {/* Indicateur de force du mot de passe */}
               {formData.newPassword && (
                 <div className="mt-2">
@@ -216,9 +213,8 @@ const ResetPassword = () => {
                     {[1, 2, 3, 4].map((level) => (
                       <div
                         key={level}
-                        className={`h-1 flex-1 rounded-full transition-colors ${
-                          level <= passwordStrength ? getPasswordStrengthColor() : 'bg-neutral-200'
-                        }`}
+                        className={`h-1 flex-1 rounded-full transition-colors ${level <= passwordStrength ? getPasswordStrengthColor() : 'bg-neutral-200'
+                          }`}
                       />
                     ))}
                   </div>

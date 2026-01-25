@@ -31,7 +31,7 @@ const Home = () => {
     const loadData = async () => {
       try {
         // Charger les produits depuis l'API directement
-        const response = await fetch('http://localhost:5000/api/products?limit=20&sort=-rating');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/products?limit=20&sort=-rating`);
         const data = await response.json();
 
         console.log('Home Products API Response:', data); // Debug
@@ -70,7 +70,7 @@ const Home = () => {
         }
 
         // Charger les catégories depuis l'API
-        const catResponse = await fetch('http://localhost:5000/api/categories');
+        const catResponse = await fetch(`${process.env.REACT_APP_API_URL}/categories`);
         const catData = await catResponse.json();
 
         if (catData.success && catData.data?.length > 0) {

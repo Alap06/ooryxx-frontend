@@ -114,7 +114,7 @@ const VendorRequestForm = () => {
             });
 
             const response = await fetch(
-                `${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/users/vendor-request`,
+                `${process.env.REACT_APP_API_URL}/users/vendor-request`,
                 {
                     method: 'POST',
                     headers: {
@@ -123,7 +123,6 @@ const VendorRequestForm = () => {
                     body: formDataToSend
                 }
             );
-
             const data = await response.json();
 
             if (data.success) {
@@ -361,8 +360,8 @@ const VendorRequestForm = () => {
                                     <label
                                         key={category}
                                         className={`flex items-center p-3 rounded-xl border-2 cursor-pointer transition-all ${formData.productCategories.includes(category)
-                                                ? 'border-primary-500 bg-primary-50 text-primary-700'
-                                                : 'border-neutral-200 hover:border-neutral-300'
+                                            ? 'border-primary-500 bg-primary-50 text-primary-700'
+                                            : 'border-neutral-200 hover:border-neutral-300'
                                             }`}
                                     >
                                         <input
@@ -543,8 +542,8 @@ const VendorRequestForm = () => {
                                 <div key={step.id} className="flex items-center">
                                     <div
                                         className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all ${currentStep >= step.id
-                                                ? 'bg-primary-600 border-primary-600 text-white'
-                                                : 'bg-white border-neutral-300 text-neutral-400'
+                                            ? 'bg-primary-600 border-primary-600 text-white'
+                                            : 'bg-white border-neutral-300 text-neutral-400'
                                             }`}
                                     >
                                         <StepIcon className="w-6 h-6" />
@@ -578,8 +577,8 @@ const VendorRequestForm = () => {
                                 onClick={prevStep}
                                 disabled={currentStep === 1}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${currentStep === 1
-                                        ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
-                                        : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
+                                    ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed'
+                                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                                     }`}
                             >
                                 <ArrowLeftIcon className="w-5 h-5" />

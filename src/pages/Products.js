@@ -62,7 +62,7 @@ const Products = () => {
         // Construire l'URL avec les filtres
         const params = new URLSearchParams();
         params.append('limit', '1000'); // Augmenter pour charger plus de produits
-        
+
         // Ajouter les filtres à l'URL pour le backend
         if (filters.category) params.append('category', filters.category);
         if (filters.minPrice) params.append('minPrice', filters.minPrice);
@@ -70,7 +70,7 @@ const Products = () => {
         if (filters.searchQuery) params.append('search', filters.searchQuery);
         if (filters.onSale) params.append('discount', 'true');
         if (filters.inStock) params.append('inStock', 'true');
-        
+
         // Ajouter le tri
         let sortParam = '-createdAt';
         switch (sortBy) {
@@ -82,17 +82,17 @@ const Products = () => {
           default: sortParam = '-reviewCount';
         }
         params.append('sort', sortParam);
-        
+
         console.log('Loading products with params:', params.toString());
 
         // Appel API réel
-        const response = await fetch(`http://localhost:5000/api/products?${params.toString()}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/products?${params.toString()}`);
         const data = await response.json();
 
         console.log('API Response:', data); // Debug
 
         let allProducts = [];
-        
+
         // Extraire les produits de la réponse API
         if (data.success && data.data?.products) {
           allProducts = data.data.products;
@@ -108,7 +108,7 @@ const Products = () => {
 
         // Filtrage côté client pour les filtres non supportés par l'API
         if (filters.brand) {
-          filteredData = filteredData.filter(p => 
+          filteredData = filteredData.filter(p =>
             p.brand?.toLowerCase() === filters.brand.toLowerCase() ||
             p.vendorId?.companyInfo?.name?.toLowerCase().includes(filters.brand.toLowerCase())
           );
@@ -120,22 +120,22 @@ const Products = () => {
         }
 
         if (filters.inStock) {
-          filteredData = filteredData.filter(p => 
+          filteredData = filteredData.filter(p =>
             p.stock > 0 && p.status === 'active'
           );
         }
 
         if (filters.isNew) {
-          filteredData = filteredData.filter(p => 
-            p.isNew || p.featured || 
-            p.badges?.includes('Nouveau') || 
+          filteredData = filteredData.filter(p =>
+            p.isNew || p.featured ||
+            p.badges?.includes('Nouveau') ||
             p.badges?.includes('new')
           );
         }
 
         if (filters.isBestseller) {
-          filteredData = filteredData.filter(p => 
-            p.isBestseller || 
+          filteredData = filteredData.filter(p =>
+            p.isBestseller ||
             p.badges?.includes('Bestseller') ||
             (p.reviewCount && p.reviewCount > 20)
           );
@@ -176,7 +176,7 @@ const Products = () => {
         });
 
         // Mettre à jour les catégories avec les comptages réels
-        setCategories(prevCategories => 
+        setCategories(prevCategories =>
           prevCategories.map(cat => ({
             ...cat,
             count: categoryCounts[cat.id] || 0
@@ -209,9 +209,9 @@ const Products = () => {
     const loadCategories = async () => {
       try {
         // Charger les catégories depuis l'API
-        const response = await fetch('http://localhost:5000/api/categories');
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`);
         const data = await response.json();
-        
+
         console.log('Categories API Response:', data); // Debug
 
         if (data.success && data.data?.length > 0) {
@@ -224,9 +224,9 @@ const Products = () => {
               slug: cat.slug,
               count: cat.productCount || 0
             }));
-          
+
           setCategories(apiCategories);
-          
+
           console.log('Categories chargées:', apiCategories.length, 'catégories');
         } else {
           setCategories([]);
@@ -509,7 +509,7 @@ const Products = () => {
       {/* Overlay filtres mobile */}
       {showFilters && (
         <div className="fixed inset-0 bg-black/50 z-50 lg:hidden" onClick={() => setShowFilters(false)}>
-          <div 
+          <div
             className="fixed right-0 top-0 h-full w-full sm:w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto animate-slide-in-right"
             onClick={(e) => e.stopPropagation()}
           >
@@ -538,7 +538,7 @@ const Products = () => {
                 mobile
               />
             </div>
-            
+
             {/* Bouton appliquer mobile */}
             <div className="fixed bottom-0 left-0 right-0 p-3 sm:p-4 bg-white border-t border-neutral-200 sm:hidden">
               <button

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { 
-  EnvelopeIcon, 
+import {
+  EnvelopeIcon,
   ArrowLeftIcon,
-  CheckCircleIcon 
+  CheckCircleIcon
 } from '@heroicons/react/24/outline';
 import OoryxxLogo from '../common/OoryxxLogo';
 
@@ -43,6 +43,7 @@ const ForgotPassword = () => {
     }
   };
 
+
   if (emailSent) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -51,12 +52,12 @@ const ForgotPassword = () => {
             <div className="flex justify-center mb-6">
               <OoryxxLogo size="lg" showText={true} animated={true} />
             </div>
-            
+
             <div className="bg-white rounded-2xl shadow-xl p-8 space-y-6 border border-neutral-100">
               <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100">
                 <CheckCircleIcon className="h-10 w-10 text-green-600" />
               </div>
-              
+
               <div className="space-y-3">
                 <h2 className="text-2xl font-bold text-neutral-800">
                   Email envoyé ! 📧
@@ -80,7 +81,7 @@ const ForgotPassword = () => {
                 >
                   Entrer le code de vérification
                 </Link>
-                
+
                 <Link
                   to="/login"
                   className="w-full flex justify-center items-center gap-2 py-3 px-4 border-2 border-neutral-200 text-sm font-medium rounded-xl text-neutral-700 hover:bg-neutral-50 transition-all duration-200"

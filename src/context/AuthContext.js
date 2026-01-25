@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
   // Fonction de connexion
   const login = async (email, password) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/auth/login`, {
         method: 'POST',
         headers: {
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
   // Fonction d'inscription
   const register = async (userData) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/auth/register`, {
         method: 'POST',
         headers: {
@@ -106,6 +106,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
   // Fonction de déconnexion
   const logout = () => {
     setUser(null);
@@ -124,7 +125,7 @@ export const AuthProvider = ({ children }) => {
   // Fonction pour demander la réinitialisation du mot de passe
   const forgotPassword = async (email) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/auth/forgot-password`, {
         method: 'POST',
         headers: {
@@ -149,7 +150,7 @@ export const AuthProvider = ({ children }) => {
   // Fonction pour réinitialiser le mot de passe avec le code
   const resetPassword = async (email, code, newPassword) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/auth/reset-password`, {
         method: 'POST',
         headers: {
@@ -180,7 +181,7 @@ export const AuthProvider = ({ children }) => {
   // Fonction de connexion avec Google
   const loginWithGoogle = async (credential) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await fetch(`${apiUrl}/auth/google`, {
         method: 'POST',
         headers: {
